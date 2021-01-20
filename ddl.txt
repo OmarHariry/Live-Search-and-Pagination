@@ -1,0 +1,192 @@
+CREATE TABLE `lab4`.`department` 
+( `department_id` INT NOT NULL AUTO_INCREMENT 
+, `department_name` VARCHAR(255) NOT NULL 
+, PRIMARY KEY (`department_id`)) ENGINE = InnoDB;
+
+
+CREATE TABLE `lab4`.`professor` 
+( `professor_id` INT NOT NULL AUTO_INCREMENT 
+, `professor_name` VARCHAR(255) NOT NULL 
+, PRIMARY KEY (`professor_id`)) ENGINE = InnoDB;
+
+
+CREATE TABLE `lab4`.`course` 
+( `course_id` INT NOT NULL AUTO_INCREMENT 
+, `course_name` VARCHAR(255) NOT NULL
+ , `course_description` TEXT NOT NULL 
+, `department_id` INT NOT NULL 
+, `professor_id` INT NOT NULL 
+, PRIMARY KEY (`course_id`)) ENGINE = InnoDB;
+
+ALTER TABLE `course` 
+ADD CONSTRAINT `FK_department` FOREIGN KEY 
+(`department_id`) REFERENCES `department`(`department_id`) 
+ON DELETE RESTRICT ON UPDATE CASCADE;
+
+ALTER TABLE `course` 
+ADD CONSTRAINT `FK_professor` FOREIGN KEY 
+(`professor_id`) REFERENCES `professor`(`professor_id`)
+ ON DELETE RESTRICT ON UPDATE CASCADE;
+
+INSERT INTO `professor`
+ (`professor_id`, `professor_name`)
+ VALUES (NULL, 'Omar'), (NULL, 'Ihab')
+
+INSERT INTO `department` 
+(`department_id`, `department_name`)
+ VALUES (NULL, 'Electrical Department'), (NULL, 'Chemistry Department')
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`)
+ VALUES (NULL, 'Math IV', 
+'Algebraic expressions; linear, absolute value equations and inequalities; lines;
+ systems of linear equations; integral exponents; polynomials; factoring.', '1', '1');
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`)
+ VALUES (NULL, 'Chemistry', 
+'The course introduces to the modern atomic models including a description of chemical bonding in
+ molecules, metals, and ionic solids. The principles underlying the periodic table of elements are
+ derived. A further section is devoted to the stoichiometry of chemical reactions.
+ Finally, an introduction to electrochemistry chemistry and chemical kinetics are given.', '2', '2')
+
+INSERT INTO `professor` (`professor_id`, `professor_name`) VALUES (NULL, 'Hicham')
+INSERT INTO `professor` (`professor_id`, `professor_name`) VALUES (NULL, 'Tarras'), (NULL, 'Fahhar')
+INSERT INTO `professor` (`professor_id`, `professor_name`) VALUES (NULL, 'Marwan')
+INSERT INTO `professor` (`professor_id`, `professor_name`) VALUES (NULL, 'Keshk')
+
+
+INSERT INTO `department` (`department_id`, `department_name`) VALUES (NULL, 'Computer Engineering Department')
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`) 
+VALUES (NULL, 'Data Structures', 'The course focuses on basic and essential topics in data structures, 
+including array-based lists, linked lists, skiplists, hash tables,
+ recursion, binary trees, scapegoat trees, red–black trees, heaps, sorting algorithms,
+ graphs, and binary trie.', '3', '3'), 
+(NULL, 'Database Systems', 
+'It provides a study of data models, data description languages, 
+and query facilities including relational algebra and SQL, data normalization,
+ transactions and their properties, physical data organization and indexing,
+ security issues and object databases.', '3', '3')
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`)
+ VALUES 
+(NULL, 'Signals & Systems', 
+'Signals and Systems is an introduction to analog and digital signal processing,
+ a topic that forms an integral part of engineering systems in many diverse areas,
+ including seismic data processing, communications, speech processing, image processing,
+ defense electronics, consumer electronics, and consumer products.', '1', '4'),
+ (NULL, 'Digital Signal Processing', 
+'The course covers theory and methods for digital signal processing 
+including basic principles governing the analysis and design of discrete-time systems as 
+signal processing devices. Review of discrete-time linear, time-invariant systems,
+ Fourier transforms and z-transforms. Topics include sampling, impulse response,
+ frequency response, finite and infinite impulse response systems, linear phase systems,
+ digital filter design and implementation, discrete-time Fourier transforms,
+ discrete Fourier transform, and the fast Fourier transform algorithms.', '1', '4')
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`)
+ VALUES
+ (NULL, 'Circuits I', 
+'Includes DC circuits, Ohm\'s and Kirchhoff\'s Laws, DC resistive networks, 
+Thevenin and Norton equivalent circuits, node voltage, and mesh current analysis methods.', '1', '5'),
+ (NULL, 'Circuits II', 
+'Advanced topics including three-phase systems, magnetically-coupled systems,
+ resonance and second-order systems, Laplace transform circuit analysis, 
+Fourier series for periodic waveforms and applications to electric circuits, 
+ideal filters, system modeling and two-port networks.', '1', '5'),
+ (NULL, 'Electronics', 'In this course students interpret the symbols,
+ basic operation and correct circuit configurations for logic gates, resistors, 
+N and P type semiconductors, diodes and transistors. 
+Topics covered in this course include testing of components, 
+soldering and de-soldering procedures, troubleshooting and common applications for digital
+ and semiconductor components.', '3', '5')
+
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`)
+ VALUES
+ (NULL, 'Discrete Mathematics', 
+'This course enables students to strengthen and 
+increase the understanding of discrete mathematics with special emphasis on 
+computer science applications. Topics include sets, number systems, the nature of proof,
+ formal logic, functions and relations, combinatorics, recurrence relations, trees and Boolean algebra.'
+, '3', '6'),
+ (NULL, 'Pattern Recognition', 
+'Pattern recognition is the scientific discipline whose goal is the 
+classification of objects into a number of categories or classes.
+ These objects can be images (2D signals) or signal waveforms (1D signals)
+ or any type of measurements that need to be classified. The objects are referred using 
+the generic term patterns. Pattern recognition is an integral part of machine intelligence systems.',
+ '3', '6'),
+ (NULL, 'Artificial Intelligence ',
+ 'The topics may include: AI methodology and fundamentals; intelligent agents;
+ search algorithms; game playing; 
+supervised and unsupervised learning; 
+decision tree learning; neural networks;
+ nearest neighbour methods; dimensionality reduction; clustering; kernel machines; 
+support vector machines; uncertainty and probability theory; probabilistic reasoning in AI; 
+Bayesian networks; statistical learning; fuzzy logic.', '3', '6'), 
+(NULL, 'Computer Vision', 'This course provides an introduction to computer
+ vision including fundamentals of image formation, camera imaging geometry,
+ feature detection and matching, stereo, motion estimation and tracking,
+ image classification and scene understanding.', '3', '6'),
+ (NULL, 'Natural Language Processing', 
+'We will learn how to create systems that can understand and produce language,
+ for applications such as information extraction, machine translation,
+ automatic summarization, question-answering, and interactive dialogue systems.
+ The course will cover linguistic (knowledge-based) and statistical approaches to 
+language processing in the three major subfields of NLP.', '3', '6')
+
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`)
+ VALUES 
+(NULL, 'Control Systems', 
+'Control Systems is the study of the analysis and regulation of the
+ output behaviors of dynamical systems subject to input signals.', '1', '7'), 
+(NULL, 'Analog Communication', 'Provides students with all necessary requirements 
+to analyze continuous Introduction to communication systems. Linear modulation: 
+amplitude modulation, AM, DSB, SSB. Exponential Modulation: frequency modulation, 
+FM, and phase modulation, PM. Multiplexing: FDM. Mixing. Superheterodyne receivers. 
+Sampling techniques.', '1', '7'), (NULL, 'Digital Communication', 'The course focuses 
+on the technologies underlying these systems, which constitute the field of digital communications.
+ Topics include digital transmission and reception, signal space representations, spectral analysis
+ of digitally modulated waveforms,design considerations for bandlimited channels,
+ introductory concepts of information theory, and error correction coding.', '1', '7')
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`) 
+VALUES ('18', 'Math I', 
+'This module is designed to provide an introduction to fundamental mathematical techniques 
+used in engineering.', '3', '8'), (NULL, 'Math II', 'Differentiation and integration techniques
+ and their applications\r\n(area, volumes, work), improper integrals, approximate integration,
+ analytic geometry, vectors,infinite series, power series, Taylor series.', '3', '8'),
+ (NULL, 'Math III', 
+'This course is about the mathematics that is most widely used in the mechanical engineering 
+core subjects: An introduction to linear algebra and ordinary differential equations (ODEs), 
+including general numerical approaches to solving systems of equations. 
+Topics covered include linear systems of equations, existence and uniqueness of solutions,
+ Gaussian elimination.', '3', '8'), 
+(NULL, 'Numerical Analysis', 
+'This course is an introduction to the numerical analysis. 
+The primary objective of the course is to develop the basic understanding of numerical 
+algorithms and skills to implement algorithms to solve mathematical problems on the computer.', '3', '8')
+
+INSERT INTO `course` 
+(`course_id`, `course_name`, `course_description`, `department_id`, `professor_id`)
+ VALUES (NULL, 'Physics I', 
+'A course in elementary physics, covers the basic concepts, principles and history of physics.
+ Course topics will include selected topics in mechanics, heat, light, sound,
+ electricity and magnetism, and modern physics.', '1', '9'), 
+(NULL, 'Physics II', 'Physics II introduces electrical and magnetic phenomena in nature,
+ including the concepts of electrical charges, electric and magnetic fields, the application of 
+Gauss\' Law, electric potential,
+ conductors and insulators, currents, basic circuits, and induction. ', '1', '9')
+
+
+
+
